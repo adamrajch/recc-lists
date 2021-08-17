@@ -1,7 +1,6 @@
 import Layout from "@components/dashboard/layout";
 import React, { ReactElement } from "react";
-interface Props {}
-
-export default function index({}: Props): ReactElement {
+// import { supabase } from "../../../client";
+export default function index(): ReactElement {
   return <Layout>dash home</Layout>;
 }

@@ -34,7 +34,7 @@ yarn-error.log*
 .vercel
 
 #supbase client
-client.js
+
 
 # Amplify
 amplify/\#current-cloud-backend

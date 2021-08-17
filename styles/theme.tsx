@@ -47,7 +47,7 @@ const theme = extendTheme({
       body: {
         fontFamily: "body",
         color: "white",
-        bg: "brand.900",
+        bg: "bg.100",
         lineHeight: "base",
       },
       a: {

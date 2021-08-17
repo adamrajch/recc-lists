@@ -42,6 +42,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     }
   }
   async function handleAuthChange(event, session) {
+    console.log(event, session);
     await fetch("/api/auth", {
       method: "POST",
       headers: new Headers({ "Content-Type": "application/json" }),
@@ -49,10 +50,11 @@ function MyApp({ Component, pageProps }: AppProps) {
       body: JSON.stringify({ event, session }),
     });
   }
+
   return (
     <React.Fragment>
       <Head>
-        <title>Your Amplify App</title>
+        <title>Supabase Chakra App</title>
         <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width"

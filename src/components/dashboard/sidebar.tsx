@@ -8,7 +8,6 @@ import {
   useColorModeValue as mode,
 } from "@chakra-ui/react";
 import * as React from "react";
-import { FaRegBell, FaRegQuestionCircle } from "react-icons/fa";
 import { Logo } from "./logo";
 import { NavLink } from "./navlink";
 import { SearchField } from "./searchfield";
@@ -39,20 +38,11 @@ export const Sidebar = (props: FlexProps) => {
         <Stack spacing="6" as="nav" aria-label="Sidebar Navigation">
           <Stack spacing="1">
             {links.map((link) => (
-              <NavLink label={link.label} href={link.href} />
+              <NavLink key={link.label} label={link.label} href={link.href} />
             ))}
           </Stack>
 
           <Divider />
-
-          <Stack spacing="1">
-            <NavLink label="Notifications" icon={FaRegBell} />
-            <NavLink
-              label="Help Center"
-              icon={FaRegQuestionCircle}
-              href="/faq"
-            />
-          </Stack>
         </Stack>
         <Spacer />
       </Flex>

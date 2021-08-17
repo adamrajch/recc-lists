@@ -1,22 +1,53 @@
-import { Avatar, Flex, HStack, Link, Text } from "@chakra-ui/react";
-import * as React from "react";
+import { ChevronDownIcon } from "@chakra-ui/icons";
+import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
+import { supabase } from "../../../client";
 
 export const UserProfile = () => {
+  const router = useRouter();
+  const [user, setUser] = useState(null);
+  //  const { user } = await supabase.auth.api.getUserByCookie(req);
+  useEffect(() => {
+    checkUser();
+  }, []);
+
+  async function checkUser() {
+    const user = await supabase.auth.user();
+    console.log("my user: ", user);
+    if (user) {
+      setUser(user);
+      // setAuthenticatedState("authenticated");
+    } else {
+      router.push("/login");
+    }
+  }
+
+  async function signOut() {
+    await supabase.auth.signOut();
+    router.push("/login");
+  }
   const placeholder = {
     username: "Loading...",
   };
+
   return (
-    <Link href="/dashboard/profile">
-      <HStack spacing="4" px="2" flexShrink={0} borderTopWidth="1px" p="4">
-        <Avatar
-          size="sm"
-          // name={user ? user.getUsername : placeholder.username}
-          // src={user?.image}
-        />
-        <Flex direction="column" fontWeight="medium">
-          <Text fontSize="sm">user</Text>
-        </Flex>
-      </HStack>
-    </Link>
+    <>
+      {user ? (
+        <Menu>
+          <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+            {user.email}
+          </MenuButton>
+          <MenuList>
+            <MenuItem onClick={() => router.push("/dashboard/profile")}>
+              Profile
+            </MenuItem>
+            <MenuItem onClick={() => signOut()}>Logout</MenuItem>
+          </MenuList>
+        </Menu>
+      ) : (
+        <>{placeholder.username}</>
+      )}
+    </>
   );
 };
