@@ -1,4 +1,4 @@
-import Account from "@components/profile";
+import Account from "@components/Account/App";
 import React, { useEffect, useState } from "react";
 import { supabase } from "../../../client";
 export default function Profile() {

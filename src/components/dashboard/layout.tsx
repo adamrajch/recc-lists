@@ -27,12 +27,27 @@ export default function Layout({
   }
 
   return (
-    <Flex h="100vh" flexDirection="column" position="fixed" w="100%">
+    <Flex
+      h="100vh"
+      flexDirection="column"
+      w="100%"
+      overflowY="auto"
+      overflowX="hidden"
+    >
       <MobileTopBar />
-      <Flex flex="1">
+      <Flex flex="1" overflow="hidden">
         <Sidebar display={{ base: "none", md: "flex" }} />
-
-        {children}
+        <Flex
+          h="100%"
+          w="100%"
+          mx={{ base: "4px", lg: 25 }}
+          align="center"
+          flexDir="column"
+          pt={6}
+          overflowY="auto"
+        >
+          {children}
+        </Flex>
       </Flex>
     </Flex>
   );

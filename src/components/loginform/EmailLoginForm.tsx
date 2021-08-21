@@ -8,9 +8,12 @@ export default function EmailLoginForm() {
 
   async function signIn() {
     if (!email) return;
-    const { error, user, session } = await supabase.auth.signIn({
-      email: email,
-    });
+    const { error, user, session } = await supabase.auth.signIn(
+      {
+        email: email,
+      },
+      { redirectTo: "localhost:3000/dashboard" }
+    );
     console.log(user, session);
     if (error) {
       console.log({ error });
